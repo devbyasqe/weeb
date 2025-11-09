@@ -1,0 +1,143 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+:root {
+  --radius: 1rem;
+
+  --gray-accent: 0, 0%, 98%;
+  --gray-background: 0, 0%, 95%;
+  --gray-muted: 0, 0%, 91%;
+  --gray-border: 0, 0%, 83%;
+  --gray-foreground: 0, 0%, 10%;
+  --gray-foreground-muted: 0, 0%, 45%;
+
+  --violet-background: 258, 100%, 60%;
+  --violet-muted: 258, 100%, 95%;
+  --violet-foreground: 258, 83%, 40%;
+  --violet-border: 258, 100%, 83%;
+
+  --absolute-white: 0, 0%, 95%;
+  --absolute-black: 0, 0%, 0%;
+  --inverted-bg: 0, 0%, 0%;
+  --inverted-foreground: 0, 0%, 95%;
+
+  --red: 0, 100%, 34%;
+  --yellow: 38, 92%, 50%;
+  --green: 142, 76%, 36%;
+}
+
+.dark {
+  --gray-accent: 0, 0%, 2%;
+  --gray-background: 0, 0%, 5%;
+  --gray-muted: 0, 0%, 9%;
+  --gray-border: 0, 0%, 17%;
+  --gray-foreground: 0, 0%, 90%;
+  --gray-foreground-muted: 0, 0%, 55%;
+
+  --violet-background: 258, 75%, 50%;
+  --violet-muted: 258, 100%, 7%;
+  --violet-foreground: 258, 80%, 85%;
+  --violet-border: 258, 85%, 28%;
+
+  --inverted-bg: 0, 0%, 95%;
+  --inverted-foreground: 0, 0%, 10%;
+
+  --red: 0, 100%, 26%;
+  --yellow: 38, 92%, 50%;
+  --green: 142, 72%, 29%;
+}
+
+@theme inline {
+  --font-sans: var(--font-dm-sans);
+  --font-mono: var(--font-google-sans-code);
+
+  --blur-2xs: 2px;
+
+  --aspect-image: 2/3;
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  --color-*: initial;
+  --color-gray-accent: hsl(var(--gray-accent));
+  --color-gray-background: hsl(var(--gray-background));
+  --color-gray-muted: hsl(var(--gray-muted));
+  --color-gray-border: hsl(var(--gray-border));
+  --color-gray-foreground: hsl(var(--gray-foreground));
+  --color-gray-foreground-muted: hsl(var(--gray-foreground-muted));
+
+  --color-violet-background: hsl(var(--violet-background));
+  --color-violet-muted: hsl(var(--violet-muted));
+  --color-violet-foreground: hsl(var(--violet-foreground));
+  --color-violet-border: hsl(var(--violet-border));
+
+  --color-absolute-white: hsl(var(--absolute-white));
+  --color-absolute-black: hsl(var(--absolute-black));
+
+  --color-inverted-bg: hsl(var(--inverted-bg));
+  --color-inverted-foreground: hsl(var(--inverted-foreground));
+
+  --color-red: hsl(var(--red));
+  --color-yellow: hsl(var(--yellow));
+  --color-green: hsl(var(--green));
+
+  --animate-loader: loader 5s linear infinite;
+  @keyframes loader {
+    0% {
+      background-position: 150% 0%;
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.5;
+    }
+    100% {
+      opacity: 1;
+      background-position: -150% 0%;
+    }
+  }
+
+  --animate-spin-gradient: spin-gradient 7s linear infinite;
+  @keyframes spin-gradient {
+    to {
+      --angle: 360deg;
+    }
+  }
+}
+
+@layer base {
+  * {
+    @apply border-gray-border outline-none select-none;
+  }
+  body {
+    @apply bg-gray-accent text-gray-foreground font-sans antialiased;
+  }
+  h1 {
+    @apply text-4xl font-semibold tracking-tight text-pretty transition-all duration-300 md:text-5xl;
+  }
+  h2 {
+    @apply text-3xl font-semibold tracking-tight text-pretty transition-all duration-300 md:text-4xl;
+  }
+  h3 {
+    @apply text-xl font-semibold tracking-tight text-pretty transition-all duration-300 md:text-2xl;
+  }
+  img {
+    @apply pointer-events-none;
+  }
+}
+
+/* * {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+*::-webkit-scrollbar {
+  display: none;
+} */
