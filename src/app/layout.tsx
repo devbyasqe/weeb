@@ -17,7 +17,8 @@ const googleSansCode = Google_Sans_Code({
 
 export const metadata: Metadata = {
   title: "Weeb - Explore Anime, Manga, Characters & Voice Actors Online",
-  description: "Weeb is your ultimate anime and manga hub! Discover detailed information on anime series, manga titles, characters, voice actors, and creators. Powered by the Jikan API, Weeb helps fans track, explore, and enjoy Japanese animation and manga content.",
+  description:
+    "Weeb is your ultimate anime and manga hub! Discover detailed information on anime series, manga titles, characters, voice actors, and creators. Powered by the Jikan API, Weeb helps fans track, explore, and enjoy Japanese animation and manga content.",
   keywords: [
     "anime",
     "manga",
@@ -29,10 +30,9 @@ export const metadata: Metadata = {
     "Japanese animation",
     "anime info",
     "manga info",
-    "Weeb app"
+    "Weeb app",
   ],
 };
-
 
 export default function RootLayout({
   children,
@@ -50,7 +50,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Navbar />
-          <main className="bg-gray-background relative isolate mx-auto min-h-[calc(100svh-4.75rem)] w-[95%] max-w-7xl transition-all duration-300 sm:max-md:max-w-160">
+          <main className="bg-gray-background relative mx-auto min-h-[calc(100svh-4.75rem)] w-[95%] max-w-7xl transition-all duration-300 sm:max-md:max-w-160">
             {children}
           </main>
           <Footer />

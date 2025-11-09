@@ -17,7 +17,7 @@ import { cn } from "@/lib/utils";
 import { useNavbarStore } from "../store/navbar";
 
 const NAV_LINKS = [
-  { label: "Anime", link: "/anime" },
+  { label: "Anime", link: "/" },
   { label: "Manga", link: "/manga" },
   { label: "Characters", link: "/characters" },
 ];
@@ -73,9 +73,10 @@ export const Navbar = () => {
         variants={navbarHeaderVariant}
         animate={isNavBarHidden ? "hidden" : "visible"}
         transition={{ duration: 0.3, ease: "linear" }}
-        className={
-          "fixed inset-x-0 top-1 z-50 mx-auto w-[95%] max-w-7xl transition-all duration-300 sm:max-md:max-w-160"
-        }
+        className={cn(
+          "fixed inset-x-0 top-1 z-50 mx-auto w-[95%] max-w-7xl transition-all duration-300 sm:max-md:max-w-160",
+          isScrolled && "top-4",
+        )}
       >
         <div
           className={cn(
@@ -182,7 +183,7 @@ export const MobileNav = ({ pathname }: { pathname: string }) => {
                 {isMobileNavOpened ? <XIcon /> : <MenuIcon />}
               </Button>
             </div>
-            <nav className="flex flex-col items-center gap-y-10 py-20">
+            <nav className="items-cente flex flex-col gap-y-10 place-self-center px-4 py-20">
               {NAV_LINKS.map(({ label, link }) => (
                 <Link
                   key={label}

@@ -20,3 +20,19 @@ export type THoverPosition = {
 export type THoverEvent =
   | React.MouseEvent<HTMLElement, MouseEvent>
   | React.FocusEvent<HTMLElement, Element>;
+
+export type THeroBannerCard = {
+  id: number;
+  imageSrc: string | null;
+  rank: number;
+  title: string;
+  description: string;
+  score: string;
+  genres: {
+    label: string;
+    link: string;
+  }[];
+  detailsLink: string;
+  trailerUrl: string | null;
+  date: string;
+};
