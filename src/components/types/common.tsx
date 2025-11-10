@@ -102,3 +102,17 @@ export type TSmallPagination = {
   last_visible_page: number;
   has_next_page: boolean;
 };
+
+export type MediaOverViewRecommendation = {
+  entry: {
+    mal_id: number;
+    url: string;
+    images: {
+      jpg: TFullImages;
+      webp: TFullImages;
+    };
+    title: string;
+  };
+  url: string;
+  votes: number;
+};

@@ -131,7 +131,6 @@ export const StaffPageLoader = ({
   );
 };
 
-
 export const AnimeEpisodesPageLoader = ({
   isError,
   noOfItems = 12,
@@ -142,10 +141,20 @@ export const AnimeEpisodesPageLoader = ({
   <div className="grid gap-2">
     {Array.from({ length: noOfItems }).map((_, index) => (
       <div key={index} className="flex items-center gap-2">
-        <Skeleton isError={isError} className="h-20 w-full " />
+        <Skeleton isError={isError} className="h-20 w-full" />
       </div>
     ))}
   </div>
 );
 
-
+export const CardRecommendationsLoader = ({ isError }: TLoader) => (
+  <>
+    <Skeleton isError={isError} className="h-12 max-w-md" />
+    <div className="mt-6 grid grid-cols-2 gap-2 md:grid-cols-3 lg:grid-cols-4">
+      <Skeleton isError={isError} className="aspect-image" />
+      <Skeleton isError={isError} className="aspect-image" />
+      <Skeleton isError={isError} className="aspect-image max-md:hidden" />
+      <Skeleton isError={isError} className="aspect-image max-lg:hidden" />
+    </div>
+  </>
+);
