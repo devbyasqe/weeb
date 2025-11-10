@@ -1,4 +1,4 @@
-import { HeroBanner } from "@/components/common/hero-banner";
+import { HeroBanner } from "@/components/media/hero-banner";
 import React from "react";
 
 const HomePage = () => {

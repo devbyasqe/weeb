@@ -34,6 +34,8 @@ export const useBannerStore = create<TBannerStore>((set, get) => ({
         );
       }
 
+      const isAnime = category === "anime";
+
       const list: THeroBannerCard[] = response.data.data.map((item) => ({
         id: item.mal_id,
         imageSrc:
@@ -48,13 +50,13 @@ export const useBannerStore = create<TBannerStore>((set, get) => ({
           label: g.name,
           link: `/${category}?genre=${g.mal_id}`,
         })),
-        detailsLink: `/${category}/${item.mal_id}`,
-        trailerUrl:
-          category === "anime"
-            ? (item as TAnimeBase).trailer?.embed_url || null
-            : null,
+        detailsLink: `${isAnime ? "" : "/manga/"}/${item.mal_id}`,
+
+        trailerUrl: isAnime
+          ? (item as TAnimeBase).trailer?.embed_url || null
+          : null,
         date: formatDateString(
-          category === "anime"
+          isAnime
             ? (item as TAnimeBase).aired?.from
             : (item as TMangaBase).published?.from,
         ),

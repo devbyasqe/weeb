@@ -21,6 +21,10 @@ export type THoverEvent =
   | React.MouseEvent<HTMLElement, MouseEvent>
   | React.FocusEvent<HTMLElement, Element>;
 
+export type TChildren = { children: React.ReactNode };
+
+export type TIdParams = { params: Promise<{ id: string }> };
+
 export type THeroBannerCard = {
   id: number;
   imageSrc: string | null;
@@ -35,4 +39,23 @@ export type THeroBannerCard = {
   detailsLink: string;
   trailerUrl: string | null;
   date: string;
+};
+
+export type TMediaOverViewStatsCard = {
+  imgSrc?: string | null;
+  overViewStats: {
+    title: string;
+    text?: string | number | null;
+  }[];
+};
+
+export type TMediaOverViewInfoCard = {
+  infoStats: {
+    title: string;
+    text?: string | null;
+    links?: {
+      label: string;
+      link: string;
+    }[];
+  }[];
 };

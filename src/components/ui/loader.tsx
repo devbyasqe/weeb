@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils";
 import React from "react";
+import { TChildren } from "../types";
 
 type TLoader = { isError?: boolean };
 
@@ -24,7 +25,7 @@ export const Skeleton = ({
 );
 
 export const BannerLoader = ({ isError }: TLoader) => (
-  <div className="isolate px-2 pt-20 pb-10 transition-all duration-300 md:px-4">
+  <div className="px-2 pt-24 pb-10 transition-all duration-300 md:px-4">
     <div className="grid md:grid-cols-2 md:gap-x-2 md:gap-y-6">
       <Skeleton
         isError={isError}
@@ -34,3 +35,48 @@ export const BannerLoader = ({ isError }: TLoader) => (
     </div>
   </div>
 );
+
+export const MediaOverViewStatsLoader = ({
+  isError,
+  children,
+}: TLoader & TChildren) => (
+  <>
+    <div className="space-y-2 px-2 pt-24 pb-10 transition-all duration-300 md:space-y-4 md:px-4">
+      <Skeleton isError={isError} className="h-8 max-w-56" />
+      <Skeleton isError={isError} className="h-10 max-w-lg" />
+    </div>
+    <div className="bg-gray-muted flex justify-center px-1 py-4">
+      <Skeleton
+        isError={isError}
+        className="h-11 w-full max-w-120 rounded-full"
+      />
+    </div>
+
+    <section className="flex gap-2 px-2 py-10 transition-all duration-300 max-md:flex-col md:gap-4 md:px-4">
+      <div className="transition-all duration-300 md:w-4/12 lg:w-3/12">
+        <div className="sticky top-14 space-y-2 transition-all duration-300 md:space-y-4">
+          <Skeleton isError={isError} className="aspect-image" />
+          <div className="p-1">
+            <div className="ring-offset-gray-accent ring-gray-border grid grid-cols-2 gap-1 overflow-clip rounded-lg ring-1 ring-offset-4">
+              {Array.from({ length: 4 }).map((_, index) => (
+                <Skeleton
+                  isError={isError}
+                  key={index}
+                  className="h-20 rounded-none"
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="space-y-2 transition-all duration-300 md:w-8/12 md:space-y-4 lg:w-9/12">
+        {children}
+      </div>
+    </section>
+  </>
+);
+
+export const MediaOverviewInfosLoader = ({ isError }: TLoader) =>
+  Array.from({ length: 4 }).map((_, index) => (
+    <Skeleton isError={isError} key={index} className="h-56" />
+  ));

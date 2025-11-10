@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useEffect } from "react";
-import { useBannerStore } from "../store/common/banner";
-import { HeroBannerCard } from "../cards/banner";
+import { useBannerStore } from "../store/media/banner";
+import { HeroBannerCard } from "../cards/media/banner";
 import { BannerLoader } from "../ui/loader";
 
 export const HeroBanner = ({ category }: { category: "anime" | "manga" }) => {
@@ -15,10 +15,7 @@ export const HeroBanner = ({ category }: { category: "anime" | "manga" }) => {
     }
   }, []);
 
-  if (!data) {
-    if (isError) return <BannerLoader isError />;
-    return <BannerLoader />;
-  }
+  if (!data || isError) return <BannerLoader isError={!!isError} />;
 
   return <HeroBannerCard list={data} />;
 };

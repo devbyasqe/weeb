@@ -1,19 +1,19 @@
 "use client";
 
 import React from "react";
-import { THeroBannerCard } from "../types";
-import useCarousel from "../hooks/carousel";
+import { THeroBannerCard } from "../../types";
+import useCarousel from "../../hooks/carousel";
 import { AnimatePresence, motion } from "motion/react";
-import { bannerContentVariant, scaleVariant } from "../variants/motion";
+import { bannerContentVariant, scaleVariant } from "../../variants/motion";
 import Image from "next/image";
-import { Button, Links } from "../ui/button";
+import { Button, Links } from "../../ui/button";
 import {
   CalendarIcon,
   ChevronRightIcon,
   PlayIcon,
   StarICon,
   XIcon,
-} from "../svg";
+} from "../../svg";
 import { CAROUSEL_INTERVAL, cn } from "@/lib/utils";
 
 export const HeroBannerCard = ({ list }: { list: THeroBannerCard[] }) => {

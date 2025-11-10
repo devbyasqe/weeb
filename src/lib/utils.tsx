@@ -28,3 +28,18 @@ export const formatDateString = (dateString?: string | null) => {
     day: "numeric",
   });
 };
+
+export const normalizeRating = (input?: string | null) => {
+  if (!input) return "N/A";
+
+  const s = input.toUpperCase();
+
+  if (s.startsWith("G")) return "G";
+  if (s.startsWith("PG-13")) return "PG-13";
+  if (s.startsWith("PG")) return "PG";
+  if (s.startsWith("R - 17+")) return "R - 17+";
+  if (s.startsWith("R+")) return "R+";
+  if (s.startsWith("RX")) return "Rx";
+
+  return "N/A";
+};
