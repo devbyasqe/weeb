@@ -105,3 +105,28 @@ export const FetchMoreItem = ({ ref }: { ref: React.Ref<HTMLDivElement> }) => (
     <Skeleton className="aspect-image max-lg:hidden" />
   </>
 );
+
+export const StaffPageLoader = ({
+  isError,
+  noOfItems = 4,
+}: {
+  isError?: boolean;
+  noOfItems?: number;
+}) => {
+  return (
+    <div className="rounded-lg border p-4">
+      <Skeleton className="h-8 max-w-xs" />
+      <div className="mt-6 grid grid-cols-2 gap-4 lg:grid-cols-3 xl:grid-cols-4">
+        {Array.from({ length: noOfItems }).map((_, index) => (
+          <div key={index} className="">
+            <Skeleton
+              isError={isError}
+              className="size-14 overflow-clip rounded-full"
+            />
+            <Skeleton className="mt-1 h-6 max-w-40" />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};

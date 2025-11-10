@@ -56,7 +56,12 @@ export const MediaOverViewInfoCard = ({
       {infoStats.map(({ title, text, links }, index) => (
         <div
           key={title + index}
-          className={"bg-gray-background rounded-md border px-4 py-2"}
+          className={cn(
+            "bg-gray-background rounded-md border px-4 py-2",
+            infoStats.length % 2 !== 0 &&
+              index === infoStats.length - 1 &&
+              "col-span-full",
+          )}
         >
           <p className="text-gray-foreground-muted font-medium">{title}</p>
           {text && <p className="mt-2 font-semibold">{text}</p>}
@@ -143,13 +148,19 @@ export const MediaRelationcard = ({
 }: {
   relations: TRelation[];
 }) => (
-  <div className="bg-gray-accent rounded-xl border p-1">
+  <div className="bg-gray-accent rounded-lg border p-1">
     <h3 className="px-3 py-4">Relations</h3>
-    <div className="gap-2 space-y-2 lg:columns-2">
+    <div
+      className={cn(
+        "columns-1 gap-1 space-y-1",
+        relations.length > 1 && "lg:columns-2",
+        relations.length < 3 && "lg:space-y-0",
+      )}
+    >
       {relations.map(({ entry, relation }) => (
         <div
           key={relation}
-          className="bg-gray-background break-inside-avoid rounded-lg border px-4 py-2"
+          className="bg-gray-background break-inside-avoid rounded-md border px-4 py-2"
         >
           <p className="text-gray-foreground-muted font-medium">{relation}</p>
           <div className="mt-4 flex flex-col gap-2">

@@ -17,13 +17,14 @@ export const MediaOverViewInfos = ({ id }: { id: string }) => {
   return (
     <>
       <MediaOverViewInfoCard infoStats={data.overview.infos.infoStats} />
-      {data.overview.descriptions.map(({ description, title }) => (
-        <MediaExpandableCard
-          key={title}
-          title={title}
-          description={description}
-        />
-      ))}
+      {data.overview.descriptions.length > 0 &&
+        data.overview.descriptions.map(({ description, title }) => (
+          <MediaExpandableCard
+            key={title}
+            title={title}
+            description={description}
+          />
+        ))}
       {data.overview.relations.length > 0 && (
         <MediaRelationcard relations={data.overview.relations} />
       )}

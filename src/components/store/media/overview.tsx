@@ -69,9 +69,9 @@ export const useMediaOverviewStore = create<TUseMediaOverviewStore>(
           airing = manga.publishing;
 
           baseStat.overViewStats = [
-            { title: "Rank", text: manga.rank },
-            { title: "Popularity", text: manga.popularity },
-            { title: "Score", text: formatScore(manga.score) },
+            { title: "Rank", text: manga.rank || "-"},
+            { title: "Popularity", text: manga.popularity || "-"},
+            { title: "Score", text: formatScore(manga.score)|| "-" },
           ];
 
           baseInfo.infoStats = [
@@ -80,16 +80,30 @@ export const useMediaOverviewStore = create<TUseMediaOverviewStore>(
               text: manga.published?.string ?? "Unknown",
             },
             { title: "Type", text: manga.type },
-            {
-              title: "Authors",
-              links:
-                manga.authors?.map((a) => ({ label: a.name, link: "/" })) ?? [],
-            },
-            {
-              title: "Genres",
-              links:
-                manga.genres?.map((g) => ({ label: g.name, link: "/" })) ?? [],
-            },
+            ...(manga.authors && manga.authors.length > 0
+              ? [
+                  {
+                    title: "Authors",
+                    links:
+                      manga.authors?.map((a) => ({
+                        label: a.name,
+                        link: "/",
+                      })) ?? [],
+                  },
+                ]
+              : []),
+            ...(manga.genres && manga.genres.length > 0
+              ? [
+                  {
+                    title: "Genres",
+                    links:
+                      manga.genres?.map((g) => ({
+                        label: g.name,
+                        link: "/",
+                      })) ?? [],
+                  },
+                ]
+              : []),
           ];
         } else {
           const anime = data as TAnimeFull;
@@ -99,10 +113,10 @@ export const useMediaOverviewStore = create<TUseMediaOverviewStore>(
           }
 
           baseStat.overViewStats = [
-            { title: "Rating", text: normalizeRating(anime.rating) },
-            { title: "Score", text: formatScore(anime.score) },
+            { title: "Rating", text: normalizeRating(anime.rating) || "-" },
+            { title: "Score", text: formatScore(anime.score) || "-" },
             { title: "Rank", text: anime.rank || "-" },
-            { title: "Popularity", text: anime.popularity },
+            { title: "Popularity", text: anime.popularity || "-" },
           ];
 
           baseInfo.infoStats = [
@@ -112,22 +126,43 @@ export const useMediaOverviewStore = create<TUseMediaOverviewStore>(
             },
             { title: "Type", text: anime.type },
             { title: "Source", text: anime.source },
-            {
-              title: "Genres",
-              links:
-                anime.genres?.map((g) => ({ label: g.name, link: "/" })) ?? [],
-            },
-            {
-              title: "Animation studio",
-              links:
-                anime.studios?.map((s) => ({ label: s.name, link: "/" })) ?? [],
-            },
-            {
-              title: "Producers",
-              links:
-                anime.producers?.map((p) => ({ label: p.name, link: "/" })) ??
-                [],
-            },
+
+            ...(anime.studios && anime.studios.length > 0
+              ? [
+                  {
+                    title: "Animation studio",
+                    links:
+                      anime.studios?.map((s) => ({
+                        label: s.name,
+                        link: "/",
+                      })) ?? [],
+                  },
+                ]
+              : []),
+            ...(anime.producers && anime.producers.length > 0
+              ? [
+                  {
+                    title: "Producers",
+                    links:
+                      anime.producers?.map((p) => ({
+                        label: p.name,
+                        link: "/",
+                      })) ?? [],
+                  },
+                ]
+              : []),
+            ...(anime.genres && anime.genres.length > 0
+              ? [
+                  {
+                    title: "Genres",
+                    links:
+                      anime.genres?.map((g) => ({
+                        label: g.name,
+                        link: "/",
+                      })) ?? [],
+                  },
+                ]
+              : []),
           ];
         }
 
@@ -146,15 +181,25 @@ export const useMediaOverviewStore = create<TUseMediaOverviewStore>(
                 relations: data.relations ?? [],
                 trailerUrl: (data as TAnimeFull).trailer?.embed_url ?? null,
                 descriptions: [
-                  {
-                    title: "Synopsis",
-                    description: data.synopsis ?? "No synopsis available.",
-                  },
-                  {
-                    title: "Background",
-                    description:
-                      data.background ?? "No background information available.",
-                  },
+                  ...(data.synopsis
+                    ? [
+                        {
+                          title: "Synopsis",
+                          description:
+                            data.synopsis ?? "No synopsis available.",
+                        },
+                      ]
+                    : []),
+                  ...(data.background
+                    ? [
+                        {
+                          title: "Background",
+                          description:
+                            data.background ??
+                            "No background information available.",
+                        },
+                      ]
+                    : []),
                 ],
               },
             },

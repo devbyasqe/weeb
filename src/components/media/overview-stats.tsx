@@ -34,11 +34,13 @@ export const MediaOverViewStats = ({
   const navLinks = [
     { label: "Overview", slug: basePath },
     { label: "Characters", slug: `${basePath}/characters` },
-    { label: "Staffs", slug: `${basePath}/staffs` },
   ];
 
-  if (category === "anime" && data.episodes) {
-    navLinks.push({ label: "Episodes", slug: `/${id}/episodes` });
+  if (category === "anime") {
+    navLinks.push({ label: "Staffs", slug: `${basePath}/staffs` });
+    if (data.episodes) {
+      navLinks.push({ label: "Episodes", slug: `${basePath}/episodes` });
+    }
   }
   return (
     <>
