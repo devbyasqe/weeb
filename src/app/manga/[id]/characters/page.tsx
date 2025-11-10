@@ -1,13 +1,13 @@
 "use client";
- 
+
 import { MediaCharacters } from "@/components/media/characters";
 import { TIdParams } from "@/components/types";
 import React, { use } from "react";
 
-const AnimeCharactersPage = ({ params }: TIdParams) => {
+const MangaCharactersPage = ({ params }: TIdParams) => {
   const { id } = use(params);
 
-  return <MediaCharacters id={`anime-${id}`} />;
+  return <MediaCharacters id={`manga-${id}`} />;
 };
 
-export default AnimeCharactersPage;
+export default MangaCharactersPage;

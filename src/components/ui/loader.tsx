@@ -80,3 +80,28 @@ export const MediaOverviewInfosLoader = ({ isError }: TLoader) =>
   Array.from({ length: 4 }).map((_, index) => (
     <Skeleton isError={isError} key={index} className="h-56" />
   ));
+
+export const CardLoader = ({
+  isError,
+  noOfItems = 12,
+}: {
+  isError?: boolean;
+  noOfItems?: number;
+}) => (
+  <section className="">
+    <div className="grid grid-cols-2 gap-2 lg:grid-cols-3 xl:grid-cols-4">
+      {Array.from({ length: noOfItems }).map((_, index) => (
+        <Skeleton isError={isError} key={index} className="aspect-image" />
+      ))}
+    </div>
+  </section>
+);
+
+export const FetchMoreItem = ({ ref }: { ref: React.Ref<HTMLDivElement> }) => (
+  <>
+    <Skeleton ref={ref} className="aspect-image" />
+    <Skeleton className="aspect-image" />
+    <Skeleton className="aspect-image max-md:hidden" />
+    <Skeleton className="aspect-image max-lg:hidden" />
+  </>
+);
