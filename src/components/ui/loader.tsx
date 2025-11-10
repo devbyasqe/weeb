@@ -130,3 +130,22 @@ export const StaffPageLoader = ({
     </div>
   );
 };
+
+
+export const AnimeEpisodesPageLoader = ({
+  isError,
+  noOfItems = 12,
+}: {
+  isError?: boolean;
+  noOfItems?: number;
+}) => (
+  <div className="grid gap-2">
+    {Array.from({ length: noOfItems }).map((_, index) => (
+      <div key={index} className="flex items-center gap-2">
+        <Skeleton isError={isError} className="h-20 w-full " />
+      </div>
+    ))}
+  </div>
+);
+
+

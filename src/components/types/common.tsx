@@ -97,3 +97,8 @@ export type TPerson = {
     jpg: { image_url: string | null };
   };
 };
+
+export type TSmallPagination = {
+  last_visible_page: number;
+  has_next_page: boolean;
+};
